@@ -8,41 +8,56 @@
     {
       id: '01',
       label: 'Inicio',
+      counter: 'FOTO 01 / 05',
+      photoTitle: 'Suelo Nuevo',
+      photoThumb: 'assets/photos/thumb_humus.webp',
       topline: 'V REGIÓN · QUILPUÉ · BELLOTO · VILLA ALEMANA',
-      hint: 'GIRA LA RUEDA O ARRASTRA EN 360°',
+      hint: 'SCROLL O ARRASTRA EN 360°',
       targetYaw: 0,
       targetPitch: 0
     },
     {
       id: '02',
       label: 'Riego',
+      counter: 'FOTO 02 / 05',
+      photoTitle: 'Sistemas de Riego',
+      photoThumb: 'assets/photos/thumb_riego.webp',
       topline: 'SISTEMAS DE RIEGO TECNIFICADO · CÉSPED & PARCELAS',
-      hint: 'DESLIZA PARA SEGUIR RECORRIENDO',
-      targetYaw: -0.65,
-      targetPitch: -0.05
+      hint: 'SCROLL PARA RECORRER EN 360°',
+      targetYaw: 1.40,
+      targetPitch: -0.06
     },
     {
       id: '03',
       label: 'Jardín',
+      counter: 'FOTO 03 / 05',
+      photoTitle: 'Jardinería & Poda',
+      photoThumb: 'assets/photos/thumb_jardin.webp',
       topline: 'JARDINERÍA & PODA INTEGRAL · PAISAJISMO Y REGENERACIÓN',
-      hint: 'ARRASTRA EN 360° PARA EXPLORAR EL JARDÍN',
-      targetYaw: 1.25,
-      targetPitch: 0.08
+      hint: 'SCROLL O ARRASTRA PARA EXPLORAR',
+      targetYaw: 2.88,
+      targetPitch: 0.06
     },
     {
       id: '04',
       label: 'Fumigación',
+      counter: 'FOTO 04 / 05',
+      photoTitle: 'Control Fitosanitario',
+      photoThumb: 'assets/photos/thumb_fumigacion.webp',
       topline: 'FUMIGACIONES & SANIDAD FITOSANITARIA · CONTROL SAG',
-      hint: 'GESTIÓN AMBIENTAL & PROTECCIÓN BIOLÓGICA',
-      targetYaw: -2.22,
+      hint: 'HUERTO EN 360° CON PULVERIZADORA SAG',
+      targetYaw: 4.36,
       targetPitch: 0.02
     },
     {
       id: '05',
       label: 'Contacto',
+      counter: 'FOTO 05 / 05',
+      photoTitle: 'Cotiza con el Ingeniero',
+      photoThumb: 'assets/photos/thumb_agronomo.webp',
       topline: 'ATENCIÓN DIRECTA · ING. AGRÓNOMO PUCV (+56 9 9953 6785)',
       hint: 'CONVERSA DIRECTO POR WHATSAPP',
-      targetYaw: 0,
+      targetYaw: 6.28,
       targetPitch: 0
     }
   ];
@@ -62,6 +77,11 @@
   const soundBtn = document.getElementById('xp-sound-btn');
   const motionBtn = document.getElementById('xp-motion-btn');
   const replayBtn = document.getElementById('xp-replay-btn');
+
+  // Live Photo Pill Elements
+  const photoThumbEl = document.getElementById('xp-photo-thumb');
+  const photoCounterEl = document.getElementById('xp-photo-counter');
+  const photoTitleEl = document.getElementById('xp-photo-title');
 
   const scene01 = document.getElementById('scene-01');
   const scene02 = document.getElementById('scene-02');
@@ -173,7 +193,7 @@
   // 360 Navigation Variables
   let targetScroll = 0;
   let currentScroll = 0;
-  const scrubLength = 5000;
+  const scrubLength = 1600; // Responsive, dynamic scroll
 
   let userYaw = 0;
   let userPitch = 0;
@@ -181,6 +201,37 @@
   let lastPointerX = 0;
   let lastPointerY = 0;
   let isReducedMotion = false;
+
+  // Continuous 360° Camera Pose dynamically driven by scroll
+  function getScrollCameraPose(progress) {
+    const keyframes = [
+      { p: 0.00, yaw: 0.00, pitch: 0.00 },
+      { p: 0.32, yaw: 1.40, pitch: -0.06 }, // Riego: sweep across green lawn
+      { p: 0.58, yaw: 2.88, pitch: 0.06 },  // Jardín: look into pruned canopies
+      { p: 0.80, yaw: 4.36, pitch: 0.02 },  // Fitosanitario: facing technician in citrus orchard
+      { p: 1.00, yaw: 6.28, pitch: 0.00 }   // Contacto: completing 360° panoramic sweep
+    ];
+
+    if (progress <= keyframes[0].p) return { yaw: keyframes[0].yaw, pitch: keyframes[0].pitch };
+    if (progress >= keyframes[keyframes.length - 1].p) {
+      const last = keyframes[keyframes.length - 1];
+      return { yaw: last.yaw, pitch: last.pitch };
+    }
+
+    for (let i = 0; i < keyframes.length - 1; i++) {
+      const k1 = keyframes[i];
+      const k2 = keyframes[i + 1];
+      if (progress >= k1.p && progress <= k2.p) {
+        const t = (progress - k1.p) / (k2.p - k1.p);
+        const easeT = 0.5 - 0.5 * Math.cos(t * Math.PI);
+        return {
+          yaw: k1.yaw + (k2.yaw - k1.yaw) * easeT,
+          pitch: k1.pitch + (k2.pitch - k1.pitch) * easeT
+        };
+      }
+    }
+    return { yaw: 0, pitch: 0 };
+  }
 
   // --- 360° Spherical VR Panoramas (Strictly Agronomic & Landscaping) ---
   const sphereGeo = new THREE.SphereGeometry(500, 60, 40);
@@ -388,6 +439,13 @@
     if (toplineTextEl) toplineTextEl.textContent = chap.topline;
     if (hintTextEl) hintTextEl.textContent = chap.hint;
 
+    // Update live photo indicator pill
+    if (photoThumbEl && !photoThumbEl.src.endsWith(chap.photoThumb)) {
+      photoThumbEl.src = chap.photoThumb;
+    }
+    if (photoCounterEl) photoCounterEl.textContent = chap.counter;
+    if (photoTitleEl) photoTitleEl.textContent = chap.photoTitle;
+
     // Update chapter dots/buttons
     if (chaptersNav) {
       chaptersNav.querySelectorAll('button').forEach((b, i) => {
@@ -444,12 +502,16 @@
     lastPointerX = e.clientX;
     lastPointerY = e.clientY;
 
-    // Adjust 360° VR viewing angles
-    userYaw -= dx * 0.0035;
-    userPitch = THREE.MathUtils.clamp(userPitch - dy * 0.0025, -Math.PI / 2.3, Math.PI / 2.3);
-
-    const deg = Math.round(((userYaw * 180 / Math.PI) % 360 + 360) % 360);
-    if (angleEl) angleEl.textContent = `${String(deg).padStart(3, '0')}°`;
+    if (e.pointerType === 'touch') {
+      // Mobile touch swipe: vertical movement advances scroll through photos & services
+      targetScroll = THREE.MathUtils.clamp(targetScroll + (-dy / (window.innerHeight * 0.75)), 0, 1);
+      // Horizontal swipe rotates 360° view
+      userYaw -= dx * 0.004;
+    } else {
+      // Desktop mouse drag: free look around
+      userYaw -= dx * 0.0035;
+      userPitch = THREE.MathUtils.clamp(userPitch - dy * 0.0025, -Math.PI / 2.3, Math.PI / 2.3);
+    }
   });
 
   window.addEventListener('pointerup', () => {
@@ -544,19 +606,26 @@
     if (isReducedMotion) {
       currentScroll = targetScroll;
     } else {
-      currentScroll += (targetScroll - currentScroll) * 0.08;
+      currentScroll += (targetScroll - currentScroll) * 0.09;
     }
 
     updateTimeline(currentScroll);
 
+    // Dynamic 360° Camera Pose driven continuously by scroll
+    const scrollPose = getScrollCameraPose(currentScroll);
+
     // Subtle automatic cinematic drift when not actively dragging
     if (!isDragging) {
-      userYaw += 0.0003;
+      userYaw += 0.0002;
     }
 
-    // Apply 360° VR camera rotation
-    camera.rotation.y = userYaw;
-    camera.rotation.x = userPitch;
+    // Apply scroll-driven 360° rotation + user manual drag offset
+    camera.rotation.y = scrollPose.yaw + userYaw;
+    camera.rotation.x = THREE.MathUtils.clamp(scrollPose.pitch + userPitch, -Math.PI / 2.3, Math.PI / 2.3);
+
+    // Dynamic 360° angle pill readout based on total camera heading
+    const currentAngleDeg = Math.round((((camera.rotation.y * 180 / Math.PI) % 360 + 360) % 360));
+    if (angleEl) angleEl.textContent = `${String(currentAngleDeg).padStart(3, '0')}°`;
 
     // Subtle particle drift
     const pos = partGeo.attributes.position.array;

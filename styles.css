@@ -305,38 +305,57 @@ html, body {
   gap: 16px;
 }
 
-.xp-scroll-hint {
+/* Dynamic Live Photo Pill Indicator */
+.xp-photo-pill {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  color: #e2dcd2;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95);
+  gap: 10px;
+  background: rgba(4, 8, 6, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 4px 14px 4px 5px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  pointer-events: auto;
 }
 
-.xp-scroll-line {
-  position: relative;
-  width: 44px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.3);
-  overflow: hidden;
+.xp-photo-pill img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--xp-accent);
+  transition: transform 0.3s ease;
 }
 
-.xp-scroll-line::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--xp-accent);
-  transform: translateX(-100%);
-  animation: xp-scroll 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+.xp-photo-pill:hover img {
+  transform: scale(1.12);
 }
 
-@keyframes xp-scroll {
-  0% { transform: translateX(-100%); }
-  50% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+.xp-photo-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-photo-meta small {
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  color: var(--xp-accent);
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.xp-photo-meta strong {
+  font-size: 11.5px;
+  font-family: var(--xp-display);
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 /* Chapter Pills */
@@ -908,8 +927,19 @@ html, body {
     right: 12px;
     gap: 8px;
   }
-  .xp-scroll-hint {
-    display: none;
+  .xp-photo-pill {
+    padding: 3px 8px 3px 3px;
+    gap: 6px;
+  }
+  .xp-photo-pill img {
+    width: 26px;
+    height: 26px;
+  }
+  .xp-photo-meta strong {
+    font-size: 10px;
+    max-width: 13ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .xp-chapters {
     padding: 3px 10px;
