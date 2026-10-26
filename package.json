@@ -1,0 +1,13 @@
+{
+  "name": "empresas-camilombriz-3d",
+  "version": "1.0.0",
+  "description": "Sitio web interactivo 3D para Empresas CamiLombriz Ltda. inspirado en Threshold Mirror",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 5500 --bind 0.0.0.0 --directory .",
+    "dev": "python -m http.server 5500 --bind 0.0.0.0 --directory ."
+  },
+  "keywords": ["threejs", "agronomia", "camilombriz", "webgl", "landing-page"],
+  "author": "Antigravity",
+  "license": "MIT"
+}

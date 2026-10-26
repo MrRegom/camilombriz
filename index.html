@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#050806" />
+  <title>CamiLombriz / Suelo nuevo, vida nueva</title>
+  <meta name="description" content="Empresas CamiLombriz Ltda. Servicios Agronómicos de Precisión en la V Región: Sistemas de Riego, Jardinería, Poda y Fumigaciones. Ing. Agrónomo PUCV y Magíster en Gestión Ambiental." />
+
+  <!-- Typography: Barlow Condensed & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" />
+
+  <!-- Standalone Three.js -->
+  <script src="assets/three.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/brand/camilombriz_real_avatar.jpg" type="image/jpeg" />
+</head>
+<body>
+
+  <main id="xp-root" class="xp" tabindex="0" aria-label="Experiencia inmersiva 360° Empresas CamiLombriz Ltda.">
+
+    <!-- 3D WebGL Canvas (Full 360° Panoramic Background) -->
+    <canvas id="xp-canvas" class="xp-world" aria-label="360 Panoramic VR Canvas"></canvas>
+
+    <!-- Natural Contrast Gradients -->
+    <div class="xp-vignette"></div>
+    <div class="xp-grain"></div>
+
+    <!-- Clean Top Navigation Bar -->
+    <header class="xp-nav">
+      <div class="xp-brand-cluster">
+        <a href="/" class="xp-wordmark">
+          CAMILOMBRIZ <span>/</span>
+        </a>
+      </div>
+
+      <div class="xp-topline-pill">
+        <span class="xp-dot"></span>
+        <span id="xp-topline-text">ING. AGRÓNOMO PUCV · MAG. GESTIÓN AMBIENTAL</span>
+      </div>
+
+      <div class="xp-nav-actions">
+        <button id="xp-menu-toggle" class="xp-menu-toggle" type="button" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chapter 01: Inicio -->
+    <section id="scene-01" class="xp-title is-active">
+      <p class="xp-kicker">V REGIÓN · QUILPUÉ · BELLOTO · VILLA ALEMANA</p>
+      <h1 class="xp-headline">
+        <span class="xp-line"><span>SUELO NUEVO,</span></span>
+        <span class="xp-line"><span>VIDA NUEVA<em>.</em></span></span>
+      </h1>
+      <p class="xp-description">
+        Ingeniería agronómica de precisión y regeneración de áreas verdes. Desliza para explorar nuestros servicios en 360°.
+      </p>
+    </section>
+
+    <!-- Chapter 02: Sistemas de Riego Tecnificado -->
+    <section id="scene-02" class="xp-title">
+      <p class="xp-kicker">INGENIERÍA HÍDRICA & AUTOMATIZACIÓN</p>
+      <h2 class="xp-headline">
+        <span class="xp-line"><span>SISTEMAS DE</span></span>
+        <span class="xp-line"><span>RIEGO TECNIFICADO<em>.</em></span></span>
+      </h2>
+      <p class="xp-description">
+        Aspersores pop-up, toberas y goteo inteligente con electroválvulas. Ahorro de hasta un 40% de agua frente a la sequía en la V Región.
+      </p>
+    </section>
+
+    <!-- Chapter 03: Jardinería, Poda y Tala -->
+    <section id="scene-03" class="xp-title">
+      <p class="xp-kicker">PAISAJISMO & RECUPERACIÓN BIOLÓGICA</p>
+      <h2 class="xp-headline">
+        <span class="xp-line"><span>JARDINERÍA,</span></span>
+        <span class="xp-line"><span>PODA Y TALA<em>.</em></span></span>
+      </h2>
+      <p class="xp-description">
+        Mantención integral de condominios, parcelas y residencias. Siembra de césped de alto tráfico y nutrición con humus de lombriz californiana.
+      </p>
+    </section>
+
+    <!-- Chapter 04: Control Fitosanitario -->
+    <section id="scene-04" class="xp-title">
+      <p class="xp-kicker">SANIDAD VEGETAL & MEDIO AMBIENTE</p>
+      <h2 class="xp-headline">
+        <span class="xp-line"><span>CONTROL</span></span>
+        <span class="xp-line"><span>FITOSANITARIO<em>.</em></span></span>
+      </h2>
+      <p class="xp-description">
+        Diagnóstico científico de plagas, hongos y patógenos con motopulverizadoras y productos autorizados por el SAG bajo criterio ambiental.
+      </p>
+    </section>
+
+    <!-- Chapter 05: Contacto Directo -->
+    <section id="scene-05" class="xp-title">
+      <p class="xp-kicker">ATENCIÓN EN TERRENO · V REGIÓN</p>
+      <h2 class="xp-headline">
+        <span class="xp-line"><span>COTIZA DIRECTO</span></span>
+        <span class="xp-line"><span>CON EL INGENIERO<em>.</em></span></span>
+      </h2>
+      <p class="xp-description">
+        Evaluaciones técnicas y presupuestos formales para parcelas, condominios y residencias en Quilpué, Viña del Mar, Concón y toda la zona central.
+      </p>
+
+      <div class="xp-actions-row">
+        <a href="https://wa.me/56999536785?text=%C2%A1Hola%20Empresas%20CamiLombriz!%20Vi%20su%20p%C3%A1gina%20web%20360%20y%20deseo%20coordinar%20una%20visita%20t%C3%A9cnica%20y%20cotizaci%C3%B3n." target="_blank" rel="noopener noreferrer" class="xp-btn-wa">
+          Cotizar por WhatsApp (+56 9 9953 6785) →
+        </a>
+        <button id="xp-replay-btn" type="button" class="xp-btn-ghost">
+          Volver al inicio ↺
+        </button>
+      </div>
+    </section>
+
+    <!-- Bottom Footer Navigation -->
+    <footer class="xp-footer">
+      <div class="xp-scroll-hint">
+        <span class="xp-scroll-line"></span>
+        <span id="xp-hint-text">GIRA LA RUEDA PARA RECORRER</span>
+      </div>
+
+      <!-- 5 Clean Chapter Pills -->
+      <nav id="xp-chapters-nav" class="xp-chapters" aria-label="Capítulos de la experiencia">
+        <span class="xp-chapter">
+          <button type="button" class="is-active">01 <span>Inicio</span></button>
+        </span>
+        <span class="xp-chapter">
+          <i></i>
+          <button type="button">02 <span>Riego</span></button>
+        </span>
+        <span class="xp-chapter">
+          <i></i>
+          <button type="button">03 <span>Jardín</span></button>
+        </span>
+        <span class="xp-chapter">
+          <i></i>
+          <button type="button">04 <span>Fumigación</span></button>
+        </span>
+        <span class="xp-chapter">
+          <i></i>
+          <button type="button">05 <span>Contacto</span></button>
+        </span>
+      </nav>
+
+      <!-- 360 Drag Angle Pill -->
+      <div class="xp-angle-pill">
+        <span>360°</span>
+        <span id="xp-angle">000°</span>
+      </div>
+
+      <div class="xp-toggles">
+        <button id="xp-sound-btn" type="button" class="xp-sound" aria-label="Sonido ambiental">
+          <span class="xp-bars" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+          </span>
+          <span class="xp-label">Sonido</span>
+        </button>
+
+        <button id="xp-motion-btn" type="button" class="xp-motion" aria-label="Alternar movimiento">
+          <span class="xp-label">Inercia</span>
+        </button>
+      </div>
+    </footer>
+
+    <!-- Progress Line -->
+    <div class="xp-progress">
+      <div id="xp-progress-bar"></div>
+    </div>
+
+    <!-- Minimalist Loader -->
+    <div id="xp-loader" class="xp-loader" role="status" aria-live="polite">
+      <span class="xp-loader-mark">CAMILOMBRIZ /</span>
+      <p>Cargando panorama 360°...</p>
+      <div class="xp-loader-bar">
+        <div id="xp-loader-fill"></div>
+      </div>
+      <small id="xp-loader-pct">0%</small>
+    </div>
+
+  </main>
+
+  <!-- Side Drawer Menu (Editorial Real Photography Portfolio) -->
+  <div id="xp-menu-backdrop" class="xp-menu-backdrop"></div>
+  <aside id="xp-menu-dialog" class="xp-menu-dialog" aria-label="Catálogo CamiLombriz">
+    <div class="xp-menu-panel">
+      <div class="xp-menu-head">
+        <span>EMPRESAS CAMILOMBRIZ LTDA.</span>
+        <button id="xp-menu-close" class="xp-menu-close" type="button" aria-label="Cerrar">✕</button>
+      </div>
+
+      <!-- Professional Identity Card -->
+      <div class="xp-menu-brandcard">
+        <div class="xp-brand-avatar-wrap">
+          <img src="assets/brand/camilombriz_real_avatar.jpg" alt="Logo CamiLombriz" class="xp-brand-avatar" />
+        </div>
+        <div class="xp-brand-info">
+          <h3>Empresas CamiLombriz</h3>
+          <p class="xp-brand-slogan">"Suelo nuevo, vida nueva"</p>
+          <div class="xp-brand-badges">
+            <span class="xp-badge">Ing. Agrónomo PUCV</span>
+            <span class="xp-badge">Mag. Gestión Ambiental</span>
+          </div>
+          <span class="xp-brand-loc">El Belloto · Quilpué · V Región</span>
+        </div>
+      </div>
+
+      <div class="xp-menu-divider">
+        <span>CATÁLOGO DE SERVICIOS EN TERRENO</span>
+      </div>
+
+      <!-- Service Cards with Real Agronomic Photos -->
+      <div class="xp-services-list">
+        
+        <!-- 01: Sistemas de Riego -->
+        <article class="xp-service-card">
+          <div class="xp-service-thumb">
+            <img src="assets/photos/thumb_riego.webp" alt="Sistemas de riego tecnificado en césped" loading="lazy" />
+          </div>
+          <div class="xp-service-content">
+            <span class="xp-service-kicker">01 / INGENIERÍA HÍDRICA</span>
+            <h4 class="xp-service-title">Sistemas de Riego Tecnificado</h4>
+            <p class="xp-service-desc">
+              Automatización con aspersores pop-up, toberas y goteo con electroválvulas. Eficiencia y ahorro de agua en la V Región.
+            </p>
+            <div class="xp-service-actions">
+              <button type="button" class="xp-btn-360" data-goto-chapter="02">Ver en 360° ↺</button>
+              <a href="https://wa.me/56999536785?text=%C2%A1Hola!%20Quisiera%20cotizar%20un%20Sistema%20de%20Riego%20Tecnificado%20para%20mi%20terreno." target="_blank" rel="noopener noreferrer" class="xp-btn-quote">Cotizar Riego →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 02: Jardinería, Poda y Tala -->
+        <article class="xp-service-card">
+          <div class="xp-service-thumb">
+            <img src="assets/photos/thumb_jardin.webp" alt="Poda de árboles y mantención de jardines" loading="lazy" />
+          </div>
+          <div class="xp-service-content">
+            <span class="xp-service-kicker">02 / PAISAJISMO & ARBORICULTURA</span>
+            <h4 class="xp-service-title">Jardinería, Poda y Tala</h4>
+            <p class="xp-service-desc">
+              Poda técnica de altura, perfilado de cercos vivos, resiembra de prados y mantención de parcelas y condominios.
+            </p>
+            <div class="xp-service-actions">
+              <button type="button" class="xp-btn-360" data-goto-chapter="03">Ver en 360° ↺</button>
+              <a href="https://wa.me/56999536785?text=%C2%A1Hola!%20Quisiera%20cotizar%20servicios%20de%20Jardiner%C3%ADa%2C%20Poda%20o%20Tala." target="_blank" rel="noopener noreferrer" class="xp-btn-quote">Cotizar Poda →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 03: Control Fitosanitario SAG -->
+        <article class="xp-service-card">
+          <div class="xp-service-thumb">
+            <img src="assets/photos/thumb_fumigacion.webp" alt="Fumigación y control fitosanitario agrícola" loading="lazy" />
+          </div>
+          <div class="xp-service-content">
+            <span class="xp-service-kicker">03 / SANIDAD FITOSANITARIA SAG</span>
+            <h4 class="xp-service-title">Control Fitosanitario & Plagas</h4>
+            <p class="xp-service-desc">
+              Diagnóstico científico de hongos, plagas y patógenos con motopulverizadoras y productos autorizados por el SAG bajo criterio ambiental.
+            </p>
+            <div class="xp-service-actions">
+              <button type="button" class="xp-btn-360" data-goto-chapter="04">Ver en 360° ↺</button>
+              <a href="https://wa.me/56999536785?text=%C2%A1Hola!%20Necesito%20control%20fitosanitario%20o%20fumigaci%C3%B3n%20para%20mis%20plantas." target="_blank" rel="noopener noreferrer" class="xp-btn-quote">Cotizar Fumigación →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 04: Humus de Lombriz Californiana -->
+        <article class="xp-service-card">
+          <div class="xp-service-thumb">
+            <img src="assets/photos/thumb_humus.webp" alt="Humus de lombriz californiana 100% puro" loading="lazy" />
+          </div>
+          <div class="xp-service-content">
+            <span class="xp-service-kicker">04 / ENMIENDA BIOLÓGICA 100% PURA</span>
+            <h4 class="xp-service-title">Humus de Lombriz Californiana</h4>
+            <p class="xp-service-desc">
+              Regeneración orgánica del suelo, reactivación microbiológica y nutrición profunda para césped, frutales y huertos.
+            </p>
+            <div class="xp-service-actions">
+              <a href="https://wa.me/56999536785?text=%C2%A1Hola%20Empresas%20CamiLombriz!%20Quisiera%20adquirir%20Humus%20de%20Lombriz%20Californiana." target="_blank" rel="noopener noreferrer" class="xp-btn-quote" style="width: 100%; text-align: center;">Comprar Humus por WhatsApp →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 05: Evaluación Técnica en Parcela -->
+        <article class="xp-service-card xp-service-featured">
+          <div class="xp-service-thumb">
+            <img src="assets/photos/thumb_agronomo.webp" alt="Ingeniero agrónomo PUCV en terreno" loading="lazy" />
+          </div>
+          <div class="xp-service-content">
+            <span class="xp-service-kicker">05 / CONSULTORÍA PUCV</span>
+            <h4 class="xp-service-title">Evaluación Técnica en Parcela</h4>
+            <p class="xp-service-desc">
+              Visita presencial por Ingeniero Agrónomo PUCV con diagnóstico técnico formal en terreno en toda la V Región.
+            </p>
+            <div class="xp-service-actions">
+              <a href="https://wa.me/56999536785?text=%C2%A1Hola%20Ingeniero!%20Quisiera%20agendar%20una%20visita%20t%C3%A9cnica%20en%20terreno%20en%20la%20V%20Regi%C3%B3n." target="_blank" rel="noopener noreferrer" class="xp-btn-quote" style="width: 100%; text-align: center;">Agendar Visita en Terreno →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Quick Contact Footer in Menu -->
+      <div class="xp-menu-footer">
+        <p class="xp-menu-direct-call">Atención Directa: <strong>+56 9 9953 6785</strong></p>
+        <a href="https://wa.me/56999536785?text=%C2%A1Hola%20Empresas%20CamiLombriz!%20Vi%20su%20p%C3%A1gina%20web%20y%20deseo%20hacer%20una%20consulta." target="_blank" rel="noopener noreferrer" class="xp-btn-wa-full">
+          Abrir Chat de WhatsApp (+56 9 9953 6785)
+        </a>
+      </div>
+
+    </div>
+  </aside>
+
+  <script src="main.js"></script>
+</body>
+</html>
